@@ -5,11 +5,11 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- * 3D body Tube
+ * Class 3D body Tube
  */
 public class Tube {
-    Ray _axisRay;
-    double _radius;
+    final Ray _axisRay;
+    final double _radius;
 
     /**
      *constructor that get Ray and radius

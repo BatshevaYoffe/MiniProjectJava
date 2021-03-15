@@ -3,9 +3,12 @@ package geometries;
 import primitives.Point3D;
 import primitives.Vector;
 
+/**
+ * Class Plan (point in vector vertical space).
+ */
 public class Plane {
-    Point3D _q0;
-    Vector _normal;
+    private Point3D _q0;
+    private Vector _normal;
 
     /**
      * constructor that get 3 points and calculate the normal

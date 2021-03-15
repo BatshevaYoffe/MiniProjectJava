@@ -3,10 +3,10 @@ package geometries;
 import primitives.Ray;
 
 /**
- * Cylinder that extends from Tube
+ * Class Cylinder that extends from Tube
  */
 public class Cylinder extends Tube{
-    double _height;
+    private double _height;
 
     /**
      * constructor that get ray radius and height,

@@ -1,12 +1,11 @@
 package primitives;
 /**
- * Ray:
- * The set of points on a straight line that are on one side relatively
+ * Class Ray is the set of points on a straight line that are on one side relatively
  * To a given point on the line called the beginning of the foundation. Defined by point and direction (unit vector)
  */
 public class Ray {
-    Point3D _p0;
-    Vector _dir;
+    private Point3D _p0;
+    private Vector _dir;
 
     @Override
     public boolean equals(Object o) {

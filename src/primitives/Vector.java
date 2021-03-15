@@ -2,13 +2,29 @@ package primitives;
 
 import static primitives.Point3D.ZERO;
 
+/**
+ * Class Vector is a fundamental object in geometry with direction and size, defined by the end point (when the starting point -
+ *          First the axes).
+ */
 public class Vector {
     Point3D _head;
 
+    /**
+     * Vector constructor who gets 3 double numbers
+     * @param x value for X Coordinate of the head Point
+     * @param y value for Y Coordinate of the head Point
+     * @param z value for Z Coordinate of the head Point
+     */
     public Vector(double x, double y, double z) {
         this(new Point3D(x, y, z));
     }
 
+    /**
+     * Vector constructor who gets 3 coordinate
+     * @param x  X Coordinate of the head Point
+     * @param y  Y Coordinate of the head Point
+     * @param z  Z Coordinate of the head Point
+     */
     public Vector(Coordinate x, Coordinate y, Coordinate z) {
         this(new Point3D(x, y, z));
     }
@@ -56,22 +72,30 @@ public class Vector {
     }
 
     /**
-     * primary constructor for vector
-     *
-     * @param head
+     * primary constructor for vector that get point
+     * @param head the point
      */
     public Vector(Point3D head) {
         if (ZERO.equals(head)) {
-            throw new IllegalArgumentException("head of vector canot be point(0,0,0)");
+            throw new IllegalArgumentException("head of vector can not be point (0,0,0)");
         }
         _head = new Point3D(head._x.coord,head._y.coord, head._z.coord);
     }
 
+    /**
+     * get accessor for head Point
+     * @return head
+     */
     public Point3D getHead() {
 
         return _head;
     }
 
+    /**
+     * subtraction of vectors
+     * @param v
+     * @return new Vector(u-v)
+     */
     public Vector subtract(Vector v) {
         double x = _head._x.coord - v._head._x.coord;
         double y = _head._y.coord - v._head._y.coord;
@@ -80,6 +104,10 @@ public class Vector {
         return new Vector(new Point3D(x, y, z));
     }
 
+    /**
+     * Calculate the length of the vector squared
+     * @return
+     */
     public double lengthSquared() {
         double xx = _head._x.coord * _head._x.coord;
         double yy = _head._y.coord * _head._y.coord;
@@ -88,12 +116,17 @@ public class Vector {
         return (xx + yy + zz);
     }
 
+    /**
+     * Calculating the length of the vector and using lengthSquared function
+     * @return length of the vector
+     */
     public double length() {
 
         return Math.sqrt(lengthSquared());
     }
 
     /**
+     * normalizing the current Vector
      * @return
      */
     public Vector normalize() {
@@ -115,6 +148,7 @@ public class Vector {
     }
 
     /**
+     * A normalization operation that returns a new normalized vector in the same direction as the original vector (using normalize function)
      * @return
      */
     public Vector normalized() {

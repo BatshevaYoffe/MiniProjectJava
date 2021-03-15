@@ -2,12 +2,15 @@ package geometries;
 
 import primitives.Point3D;
 
+/**
+ *Sphere Class
+ */
 public class Sphere {
-    Point3D _center;
-    double _radius;
+    private Point3D _center;
+    private double _radius;
 
     /**
-     *
+     * constructor
      * @param center
      * @param radius
      */
