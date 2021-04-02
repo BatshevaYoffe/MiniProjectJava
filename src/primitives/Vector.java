@@ -16,16 +16,7 @@ public class Vector {
      * @param z value for Z Coordinate of the head Point
      */
     public Vector(double x, double y, double z) {
-        this(new Point3D(x, y, z));
-    }
 
-    /**
-     * Vector constructor who gets 3 coordinate
-     * @param x  X Coordinate of the head Point
-     * @param y  Y Coordinate of the head Point
-     * @param z  Z Coordinate of the head Point
-     */
-    public Vector(Coordinate x, Coordinate y, Coordinate z) {
         this(new Point3D(x, y, z));
     }
 

@@ -12,25 +12,16 @@ public class Point3D {
     public final static Point3D ZERO=new Point3D(0d,0d,0d);
 
     /**
-     * primary constructor for 3D point that gets 3 coordinate
-     * @param x coordinate for x
-     * @param y coordinate for y
-     * @param z coordinate for z
-     */
-    public Point3D(Coordinate x, Coordinate y, Coordinate z) {
-        _x = x;
-        _y = y;
-        _z = z;
-    }
-
-    /**
      * constructor for 3D point that gets 3 numbers
      * @param x value for creating x coordinate
      * @param y value for creating y coordinate
      * @param z value for creating z coordinate
      */
     public Point3D(double x, double y, double z) {
-        this(new Coordinate(x),new Coordinate(y),new Coordinate(z));
+
+        _x=new Coordinate(x);
+        _y=new Coordinate(y);
+        _z=new Coordinate(z);
     }
 
     /**
@@ -77,14 +68,17 @@ public class Point3D {
     /**
      * The distance between two points squared
      * @param other
-     * @return
+     * @return (x2 - x1)^2 + (y2-y1)^2 + (z2-z1)^2
      */
-    public double distanceSquared(Point3D other){
-        double xx=(other._x.coord-_x.coord)*(other._x.coord-_x.coord);
-        double yy=(other._y.coord-_y.coord)*(other._y.coord-_y.coord);
-        double zz=(other._z.coord-_z.coord)*(other._z.coord-_z.coord);
+    public double distanceSquared(Point3D other) {
+        final double x1 = _x.coord;
+        final double y1 = _y.coord;
+        final double z1 = _z.coord;
+        final double x2 = other._x.coord;
+        final double y2 = other._y.coord;
+        final double z2 = other._z.coord;
 
-        return (xx+yy+zz);
+        return ((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)) + ((z2 - z1) * (z2 - z1));
     }
 
     /**

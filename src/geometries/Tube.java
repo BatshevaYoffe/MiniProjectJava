@@ -2,14 +2,41 @@ package geometries;
 
 import primitives.Point3D;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
+
+import java.util.List;
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * Class 3D body Tube
  */
-public class Tube {
+public class Tube implements Geometry {
     final Ray _axisRay;
     final double _radius;
+
+    /**
+     * getNormal override function
+     * @param point
+     * @return
+     */
+    @Override
+    public Vector getNormal(Point3D point) {
+        Point3D P0=_axisRay.getP0();
+        Vector V=_axisRay.getDir();
+
+        Vector P0_P= point.subtract(P0);
+        double t= Util.alignZero(P0_P.dotProduct(V));
+
+        if(Util.isZero(t)){
+            return P0_P.normalize();
+        }
+        Point3D O=P0.add(V.scale(t));
+        Vector O_P= point.subtract(O);
+        return O_P.normalize();
+    }
+
 
     /**
      *constructor that get Ray and radius
@@ -21,12 +48,4 @@ public class Tube {
         _radius = radius;
     }
 
-    /**
-     *
-     * @param point3D
-     * @return null
-     */
-    public Vector getNormal(Point3D point3D) {
-        return null;
-    }
 }

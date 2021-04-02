@@ -7,8 +7,8 @@ import primitives.Vector;
  * Class Plan (point in vector vertical space).
  */
 public class Plane {
-    private Point3D _q0;
-    private Vector _normal;
+    final Point3D _q0;
+    final Vector _normal;
 
     /**
      * constructor that get 3 points and calculate the normal
@@ -17,9 +17,9 @@ public class Plane {
      * @param p3 third point
      */
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
-        _q0 = p2;
-        Vector U = p1.subtract(p2);
-        Vector V = p3.subtract(p2);
+        _q0 = p1;
+        Vector U = p2.subtract(p1);//vector from p1 towards p2
+        Vector V = p3.subtract(p1);//vector from p1 towards p2
 
         Vector N = U.crossProduct(V);
         N.normalize();
@@ -41,7 +41,15 @@ public class Plane {
      * @return
      */
     public Vector getNormal(Point3D point3D) {
-        return null;
+        return _normal;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Vector getNormal() {
+        return _normal;
     }
 
     @Override
