@@ -45,7 +45,7 @@ public class Plane {
     }
 
     /**
-     *
+
      * @return
      */
     public Vector getNormal() {

@@ -87,6 +87,7 @@ public class Point3D {
      * @return
      */
     public  double distance(Point3D other){
+
         return Math.sqrt(distanceSquared(other));
     }
 }
