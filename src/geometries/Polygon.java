@@ -18,7 +18,7 @@ public class Polygon implements Geometry {
     /**
      * Associated plane in which the polygon lays
      */
-    protected Plane plane;
+    protected final Plane plane;
 
     /**
      * Polygon constructor based on vertices list. The list must be ordered by edge

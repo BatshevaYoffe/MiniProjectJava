@@ -11,10 +11,11 @@ public class Plane {
     final Vector _normal;
 
     /**
-     * constructor that get 3 points and calculate the normal
+     * constructor that get 3 points and calculate the normal, if 2 of the point coming together or on the same line=> then an exception will be thrown
      * @param p1 first point
      * @param p2 second point
      * @param p3 third point
+     *
      */
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
         _q0 = p1;

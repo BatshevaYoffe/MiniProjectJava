@@ -8,8 +8,8 @@ import primitives.Vector;
  *Sphere Class
  */
 public class Sphere implements Geometry{
-    private Point3D _center;
-    private double _radius;
+    final Point3D _center;
+    final double _radius;
 
     @Override
     public Vector getNormal(Point3D point3D) {

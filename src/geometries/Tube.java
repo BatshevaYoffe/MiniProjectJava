@@ -5,6 +5,7 @@ import primitives.Ray;
 import primitives.Util;
 import primitives.Vector;
 
+import javax.swing.plaf.basic.BasicArrowButton;
 import java.util.List;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
@@ -48,4 +49,7 @@ public class Tube implements Geometry {
         _radius = radius;
     }
 
+    public Ray getAxis() {
+        return _axisRay;
+    }
 }
