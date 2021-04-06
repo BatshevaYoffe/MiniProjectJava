@@ -13,7 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class TubeTest {
     /**
-     *
+     *  test method for Tube get normal
+     *  create new Tube with Ray(point,vector) and radius
+     *  create new vector with the normal tube
+     *  check if the normal is orthogonal to the tube
      */
     @Test
     void testGetNormal() {
