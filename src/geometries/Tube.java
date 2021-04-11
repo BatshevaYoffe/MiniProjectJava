@@ -52,4 +52,9 @@ public class Tube implements Geometry {
     public Ray getAxis() {
         return _axisRay;
     }
+
+    @Override
+    public List<Point3D> findIntsersection(Ray ray) {
+        return null;
+    }
 }

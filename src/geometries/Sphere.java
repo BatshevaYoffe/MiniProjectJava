@@ -34,7 +34,7 @@ public class Sphere implements Geometry {
     }
 
     @Override
-    public List<Point3D> findIntersection(Ray ray) {
+    public List<Point3D> findIntsersection(Ray ray) {
         Point3D p0 = ray.getP0();
         Point3D O = _center;
         Vector V = ray.getDir();
@@ -64,7 +64,5 @@ public class Sphere implements Geometry {
         }
 
         return null;
-
     }
-
 }

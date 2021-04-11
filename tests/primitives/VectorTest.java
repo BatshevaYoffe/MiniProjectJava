@@ -74,7 +74,7 @@ class VectorTest {
     void testNormalize() {
         Vector vCopy = new Vector(v1.getHead());
         Vector vCopyNormalize = vCopy.normalize();
-        assertEquals (vCopy, "ERROR: normalize() function creates a new vector");
+        assertEquals (vCopy,vCopyNormalize, "ERROR: normalize() function creates a new vector");
         if (!isZero(vCopyNormalize.length() - 1))
             out.println("ERROR: normalize() result is not a unit vector");
         Vector u = v1.normalized();

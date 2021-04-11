@@ -1,12 +1,15 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 /**
  * Class Plan (point in vector vertical space).
  */
-public class Plane {
+public class Plane implements Geometry{
     final Point3D _q0;
     final Vector _normal;
 
@@ -59,5 +62,10 @@ public class Plane {
                 "_q0=" + _q0 +
                 ", _normal=" + _normal +
                 '}';
+    }
+
+    @Override
+    public List<Point3D> findIntsersection(Ray ray) {
+        return null;
     }
 }

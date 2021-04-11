@@ -122,7 +122,7 @@ public class Vector {
      */
     public Vector normalize() {
 
-        double len = length();
+        double len = this.length();
         if (len == 0) {
             throw new ArithmeticException("cannot divide by zero");
         }
@@ -134,7 +134,7 @@ public class Vector {
         if (ZERO.equals(newhead)) {
             throw new IllegalArgumentException("point (0,0,0)");
         }
-        _head = newhead;
+        this._head = newhead;
         return this;
     }
 
