@@ -17,8 +17,8 @@ class TriangleTest {
     @Test
     void testGetNormal() {
         Triangle p=new Triangle(new Point3D(1,0,0),new Point3D(0,1,0),new Point3D(0,0,1));
-        double sqrt = Math.sqrt(1d / 3);
-        assertEquals(new Vector(sqrt, sqrt, sqrt), p.getNormal(new Point3D(0, 0, 1)), "Bad normal to Triangle");
+        double sqrt1 = Math.sqrt(1d / 3);
+        assertEquals(new Vector(sqrt1, sqrt1, sqrt1), p.getNormal(new Point3D(0, 0, 1)), "Bad normal to Triangle");
 
     }
 }

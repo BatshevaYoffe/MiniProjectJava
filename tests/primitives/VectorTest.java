@@ -52,7 +52,7 @@ class VectorTest {
 
     @Test
     void testSubtract() {
-        if(!new Vector(0,0,0).equals(v1.subtract(v1)))
+        if(!new Vector(3,6,9).equals(v1.subtract(v2)))
             out.println("ERROR: substract() wrong value");
     }
 
