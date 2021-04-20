@@ -6,6 +6,9 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 /**
  * Class Plan (point in vector vertical space).
  */
@@ -66,6 +69,35 @@ public class Plane implements Geometry{
 
     @Override
     public List<Point3D> findIntsersection(Ray ray) {
+        Point3D p0 = ray.getP0();
+        Vector v=ray.getDir();
+
+        Vector N=_normal;
+
+
+        if(_q0.equals(p0)){
+            return null;
+        }
+        //numerator
+        double Nq0_p0=alignZero(N.dotProduct(_q0.subtract(p0)));
+        //denominator:
+        double nv=alignZero(N.dotProduct(v));
+
+        //the ray parallel to the plane
+        if(isZero(nv)){
+            return null;
+        }
+
+        double t=alignZero(Nq0_p0/nv);
+        if(t>0){
+            Point3D p= p0.add(v.scale(t));
+            return (List.of(p));
+        }
+
         return null;
     }
+
+
+
+
 }
