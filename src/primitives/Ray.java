@@ -38,4 +38,14 @@ public class Ray {
         return new Vector(_dir._head);
     }
 
+    /**
+     * calculate point on ray P=P_0+t∙v
+     * @param t
+     * @return point
+     */
+    public Point3D getPoint(double t){
+        Point3D p;
+        p=_p0.add(_dir.scale(t));
+        return p;
+    }
 }

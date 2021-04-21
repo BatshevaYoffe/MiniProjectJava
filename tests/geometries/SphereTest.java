@@ -86,8 +86,8 @@ class SphereTest {
         assertEquals(List.of(new Point3D(2, 0, 0)), result,"Line through O, Ray starts inside");
 
         // TC16: Ray starts at the center (1 points)
-      //  result = sphere.findIntsersection(new Ray(new Point3D(1, 0, 0), new Vector(0, 0, 1)));
-     //   assertEquals(1, result.size(), "Wrong number of points");
+        //result = sphere.findIntsersection(new Ray(new Point3D(1, 0, 0), new Vector(0, 0, 1)));
+       // assertEquals(1, result.size(), "Wrong number of points");
       //  assertEquals(List.of(new Point3D(1, 0, 1)), result,"Line through O, Ray starts at the center");
         //assertEquals(List.of(new Point3D(1, 1, 0)),
          //       sphere.findIntsersection(new Ray(new Point3D(1, 0, 0), new Vector(0, 1, 0))),

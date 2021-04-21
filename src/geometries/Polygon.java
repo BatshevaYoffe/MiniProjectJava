@@ -88,6 +88,45 @@ public class Polygon implements Geometry {
 
     @Override
     public List<Point3D> findIntsersection(Ray ray) {
-        return null;
+        List<Point3D> result=plane.findIntsersection(ray);
+
+        if(result==null){
+            return null;
+        }
+
+        Point3D p0= ray.getP0();
+        Vector v=ray.getDir();
+
+        Point3D p1=vertices.get(0);
+        Point3D p2=vertices.get(1);
+
+        Vector v1=p1.subtract(p0);
+        Vector v2=p2.subtract(p0);
+
+        double sign=alignZero(v.dotProduct(v1.crossProduct(v2)));
+
+        if(isZero(sign)){
+            return null;
+        }
+
+        boolean flag=sign>0;
+
+        //Calculation of every scalar product of the ray's direction vector with the cross Product of to vectors in the plan
+        //and  check if the result !=0 and all the results(of all the calculation) have the same sign.
+        for(int i=2;i<vertices.size();i++){
+            v1=v2;
+            v2=vertices.get(i).subtract(p0);
+
+            sign=alignZero(v.dotProduct(v1.crossProduct(v2)));
+            if(isZero(sign)){
+                return null;
+            }
+
+            if(flag!=(sign>0)){
+                return null;
+            }
+        }
+
+        return result;
     }
 }

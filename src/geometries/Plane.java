@@ -90,7 +90,7 @@ public class Plane implements Geometry{
 
         double t=alignZero(Nq0_p0/nv);
         if(t>0){
-            Point3D p= p0.add(v.scale(t));
+            Point3D p= ray.getPoint(t);
             return (List.of(p));
         }
 
