@@ -97,8 +97,8 @@ public class Polygon implements Geometry {
         Point3D p0= ray.getP0();
         Vector v=ray.getDir();
 
-        Point3D p1=vertices.get(0);
-        Point3D p2=vertices.get(1);
+        Point3D p1=vertices.get(1);
+        Point3D p2=vertices.get(0);
 
         Vector v1=p1.subtract(p0);
         Vector v2=p2.subtract(p0);
@@ -113,7 +113,7 @@ public class Polygon implements Geometry {
 
         //Calculation of every scalar product of the ray's direction vector with the cross Product of to vectors in the plan
         //and  check if the result !=0 and all the results(of all the calculation) have the same sign.
-        for(int i=2;i<vertices.size();i++){
+        for(int i = vertices.size() - 1; i > 0; --i){
             v1=v2;
             v2=vertices.get(i).subtract(p0);
 
