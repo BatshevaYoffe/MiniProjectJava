@@ -1,4 +1,7 @@
 package primitives;
+
+import java.util.List;
+
 /**
  * Class Ray is the set of points on a straight line that are on one side relatively
  * To a given point on the line called the beginning of the foundation. Defined by point and direction (unit vector)
@@ -47,5 +50,29 @@ public class Ray {
         Point3D p;
         p=_p0.add(_dir.scale(t));
         return p;
+    }
+
+    /**
+     *
+     * @param intersection
+     * @return
+     */
+    public Point3D getClosestPoint(List<Point3D> intersection) {
+        Point3D result=null;
+        //if there are not intersection
+        if (intersection==null){
+            return null;
+        }
+        //the smallest distance
+        double distance=Double.MAX_VALUE;
+        for(Point3D p:intersection){
+            double newDis=_p0.distance(p);
+            if(newDis<distance){
+                distance=newDis;
+                result=p;
+            }
+        }
+
+        return result;
     }
 }
