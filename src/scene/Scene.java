@@ -13,8 +13,11 @@ public class Scene {
 
     public AmbientLight ambientLight;
     public Color backGroudColor;
+
     public Scene(String name){
+
         _name=name;
+        geometries=new Geometries();
     }
 
     public Scene setAmbientLight(AmbientLight ambientLight) {

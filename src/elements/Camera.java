@@ -9,9 +9,9 @@ import static primitives.Util.isZero;
 public class Camera {
     private final Point3D _p0;
     //Vectors of the camera direction
-    private final Vector _vTo;
-    private final Vector _vUp;
-    private final Vector _vRight;
+    final private Vector _vTo;
+    final private  Vector _vUp;
+    final private Vector _vRight;
     private double _width;
     private double _height;
     private double _distance;
