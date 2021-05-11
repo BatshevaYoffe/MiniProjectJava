@@ -54,8 +54,8 @@ public class Ray {
 
     /**
      *
-     * @param intersection
-     * @return
+     * @param intersection Collection of points
+     * @return the point closest to the beginning of the ray
      */
     public Point3D getClosestPoint(List<Point3D> intersection) {
         Point3D result=null;
@@ -66,7 +66,7 @@ public class Ray {
         //the smallest distance
         double distance=Double.MAX_VALUE;
         for(Point3D p:intersection){
-            double newDis=_p0.distance(p);
+            double newDis=p.distance(_p0);
             if(newDis<distance){
                 distance=newDis;
                 result=p;
