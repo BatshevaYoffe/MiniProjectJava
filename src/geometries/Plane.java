@@ -12,7 +12,7 @@ import static primitives.Util.isZero;
 /**
  * Class Plan (point in vector vertical space).
  */
-public class Plane implements Geometry{
+public class Plane extends Geometry{
     final Point3D _q0;
     final Vector _normal;
 
@@ -67,8 +67,10 @@ public class Plane implements Geometry{
                 '}';
     }
 
+
+
     @Override
-    public List<Point3D> findIntsersection(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         Point3D p0 = ray.getP0();
         Vector v=ray.getDir();
 
@@ -91,13 +93,11 @@ public class Plane implements Geometry{
         double t=alignZero(Nq0_p0/nv);
         if(t>0){
             Point3D p= ray.getPoint(t);
-            return (List.of(p));
+            return (List.of(new GeoPoint(this,p)));
         }
 
         return null;
     }
-
-
 
 
 }

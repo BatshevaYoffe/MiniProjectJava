@@ -32,7 +32,7 @@ public class CameraIntegrationTest {
             for (int j = 0; j < 3; j++) {
                 Ray ray = camera.constructRayThroughPixel(3, 3, j, i);
 
-                List<Point3D> list = geometry.findIntsersection(ray);
+                List<Point3D> list = geometry.findIntersections(ray);
                 if(list!=null){
                     if(allPoints==null){
                         allPoints=new LinkedList<>();

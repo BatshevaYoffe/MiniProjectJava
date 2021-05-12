@@ -2,10 +2,7 @@ package scene;
 
 import elements.AmbientLight;
 import geometries.Geometries;
-import primitives.Point3D;
 import primitives.Color;
-
-import java.awt.*;
 
 /**
  *
@@ -15,7 +12,7 @@ public class Scene {
     public Geometries geometries;
 
     public AmbientLight ambientLight=new AmbientLight();
-    public Color backGroudColor=Color.BLACK;
+    public Color backgroundColor =Color.BLACK;
 
     /**
      * A builder that gets the name of the scene (only) that will also build an empty collection of bodies for model D3.
@@ -42,7 +39,7 @@ public class Scene {
      * @return the scene
      */
     public Scene setBackground(Color color) {
-        this.backGroudColor=color;
+        this.backgroundColor =color;
         return this;
     }
 

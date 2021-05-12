@@ -7,6 +7,7 @@ import primitives.Ray;
 import scene.Scene;
 
 import java.util.List;
+import java.util.MissingResourceException;
 
 /**
  * Render Creates from the scene the color matrix of the image
@@ -82,9 +83,9 @@ public class Render {
      * @param color
      */
     public void printGrid(int interval, Color color) {
-        //if(_imageWriter==null){
-        //    throw new  MissingResourcesException("the image writer is NULL");
-        //}
+        if(_imageWriter==null){
+           throw new MissingResourceException("imagewriter is null",ImageWriter.class.getName(),"");
+        }
         int nX = _imageWriter.getNx();
         int nY = _imageWriter.getNy();
         for (int i = 0; i < nY; i++) {

@@ -1,5 +1,7 @@
 package primitives;
 
+import  static geometries.Intersectable.GeoPoint;
+
 import java.util.List;
 
 /**
@@ -75,4 +77,23 @@ public class Ray {
 
         return result;
     }
+
+     public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPointList) {
+         GeoPoint result=null;
+         //if there are not intersection
+         if (geoPointList==null){
+             return null;
+         }
+         //the smallest distance
+         double distance=Double.MAX_VALUE;
+         for(var gp:geoPointList){
+             double newDis=gp.point.distance(_p0);
+             if(newDis<distance){
+                 distance=newDis;
+                 result=gp;
+             }
+         }
+
+         return result;
+     }
 }

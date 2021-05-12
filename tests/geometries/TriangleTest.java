@@ -33,30 +33,30 @@ class TriangleTest {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Inside triangle (1 points)
         Point3D p=new Point3D(1,0,0);
-        List<Point3D> result1=triangle.findIntsersection(new Ray(new Point3D(0,-1,0),new Vector(1,1,0)));
+        List<Point3D> result1=triangle.findIntersections(new Ray(new Point3D(0,-1,0),new Vector(1,1,0)));
         assertEquals( 1, result1.size(),"Wrong number of points");
         assertEquals(List.of(p), result1,"Bad Intersection");
 
         // TC02: Outside against edge (0 points)
-        assertEquals(List.of(new Point3D(-1,0,0)),plane.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(-1,2,0))),"Bad Intersection with plan");
-        assertNull(triangle.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(-1,2,0))), "Bad Intersection");
+        assertEquals(List.of(new Point3D(-1,0,0)),plane.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(-1,2,0))),"Bad Intersection with plan");
+        assertNull(triangle.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(-1,2,0))), "Bad Intersection");
 
         // TC03: Outside against vertex (0 points)
-        assertEquals(List.of(new Point3D(3,0,0)),plane.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(3,2,0))),"Bad Intersection with plan");
-        assertNull(triangle.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(3,2,0))), "Bad Intersection");
+        assertEquals(List.of(new Point3D(3,0,0)),plane.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(3,2,0))),"Bad Intersection with plan");
+        assertNull(triangle.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(3,2,0))), "Bad Intersection");
 
         // =============== Boundary Values Tests ==================
         // TC11: On edge(0 points)
-        assertEquals(List.of(new Point3D(1,0,0.5)),plane.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(1,2,0.5))),"Bad Intersection with plan");
-        assertNull(triangle.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(1,2,0.5))), "Bad Intersection");
+        assertEquals(List.of(new Point3D(1,0,0.5)),plane.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(1,2,0.5))),"Bad Intersection with plan");
+        assertNull(triangle.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(1,2,0.5))), "Bad Intersection");
 
         // TC12: In vertex(0 points)
-        assertEquals(List.of(new Point3D(0,0,1)),plane.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(0,2,1))),"Bad Intersection with plan");
-        assertNull(triangle.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(0,2,1))), "Bad Intersection");
+        assertEquals(List.of(new Point3D(0,0,1)),plane.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(0,2,1))),"Bad Intersection with plan");
+        assertNull(triangle.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(0,2,1))), "Bad Intersection");
 
         // TC13: On edge's continuation(0 points)
-        assertEquals(List.of(new Point3D(3,0,-0.5)),plane.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(3,2,-0.5))),"Bad Intersection with plan");
-        assertNull(triangle.findIntsersection(new Ray(new Point3D(0,-2,0),new Vector(3,2,-0.5))), "Bad Intersection");
+        assertEquals(List.of(new Point3D(3,0,-0.5)),plane.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(3,2,-0.5))),"Bad Intersection with plan");
+        assertNull(triangle.findIntersections(new Ray(new Point3D(0,-2,0),new Vector(3,2,-0.5))), "Bad Intersection");
 
 
 
