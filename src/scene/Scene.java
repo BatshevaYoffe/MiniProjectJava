@@ -1,8 +1,13 @@
 package scene;
 
 import elements.AmbientLight;
+import elements.LightSource;
 import geometries.Geometries;
 import primitives.Color;
+import primitives.Material;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -13,6 +18,7 @@ public class Scene {
 
     public AmbientLight ambientLight=new AmbientLight();
     public Color backgroundColor =Color.BLACK;
+    public List<LightSource> lights = new LinkedList<>();
 
     /**
      * A builder that gets the name of the scene (only) that will also build an empty collection of bodies for model D3.

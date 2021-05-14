@@ -12,16 +12,16 @@ import static primitives.Util.isZero;
 /**
  * Class Plan (point in vector vertical space).
  */
-public class Plane extends Geometry{
+public class Plane extends Geometry {
     final Point3D _q0;
     final Vector _normal;
 
     /**
      * constructor that get 3 points and calculate the normal, if 2 of the point coming together or on the same line=> then an exception will be thrown
+     *
      * @param p1 first point
      * @param p2 second point
      * @param p3 third point
-     *
      */
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
         _q0 = p1;
@@ -32,8 +32,10 @@ public class Plane extends Geometry{
         N.normalize();
         _normal = N;
     }
+
     /**
      * constructor that get point and vector(normalized the vector)
+     *
      * @param point3D the new point
      * @param vectorN the new vector
      */
@@ -43,7 +45,6 @@ public class Plane extends Geometry{
     }
 
     /**
-     *
      * @param point3D
      * @return
      */
@@ -52,7 +53,6 @@ public class Plane extends Geometry{
     }
 
     /**
-
      * @return
      */
     public Vector getNormal() {
@@ -67,33 +67,36 @@ public class Plane extends Geometry{
                 '}';
     }
 
-
-
+    /**
+     *
+     * @param ray
+     * @return list of geo points
+     */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         Point3D p0 = ray.getP0();
-        Vector v=ray.getDir();
+        Vector v = ray.getDir();
 
-        Vector N=_normal;
+        Vector N = _normal;
 
 
-        if(_q0.equals(p0)){
+        if (_q0.equals(p0)) {
             return null;
         }
         //numerator
-        double Nq0_p0=alignZero(N.dotProduct(_q0.subtract(p0)));
+        double Nq0_p0 = alignZero(N.dotProduct(_q0.subtract(p0)));
         //denominator:
-        double nv=alignZero(N.dotProduct(v));
+        double nv = alignZero(N.dotProduct(v));
 
         //the ray parallel to the plane
-        if(isZero(nv)){
+        if (isZero(nv)) {
             return null;
         }
 
-        double t=alignZero(Nq0_p0/nv);
-        if(t>0){
-            Point3D p= ray.getPoint(t);
-            return (List.of(new GeoPoint(this,p)));
+        double t = alignZero(Nq0_p0 / nv);
+        if (t > 0) {
+            Point3D p = ray.getPoint(t);
+            return (List.of(new GeoPoint(this, p)));
         }
 
         return null;
