@@ -6,6 +6,9 @@ import primitives.Vector;
 
 import static primitives.Util.isZero;
 
+/**
+ * camera class
+ */
 public class Camera {
     private final Point3D _p0;
     //Vectors of the camera direction

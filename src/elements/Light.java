@@ -6,6 +6,10 @@ class Light {
     //Fill lighting intensity
     protected final Color _intensity;
 
+    /**
+     * constructor that Initializing
+     * @param intensity
+     */
     Light(Color intensity) {
         _intensity = intensity;
     }

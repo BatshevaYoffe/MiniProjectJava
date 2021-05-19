@@ -23,8 +23,7 @@ public class Sphere extends Geometry {
     }
 
     /**
-     * constructor
-     *
+     * sphere constructor
      * @param center
      * @param radius
      */
@@ -33,6 +32,11 @@ public class Sphere extends Geometry {
         _radius = radius;
     }
 
+    /**
+     * find geo points intersections with sphere
+     * @param ray
+     * @return list of geo points
+     */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         Point3D p0 = ray.getP0();

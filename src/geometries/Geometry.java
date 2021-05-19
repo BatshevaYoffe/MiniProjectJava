@@ -31,10 +31,19 @@ public abstract class Geometry implements Intersectable {
         return this;
     }
 
+    /**
+     * get material function
+     * @return geometric material
+     */
     public Material getMaterial() {
         return _material;
     }
 
+    /**
+     * set function
+     * @param material of the geometric
+     * @return the object
+     */
     public Geometry setMaterial(Material material) {
         _material = material;
         return this;

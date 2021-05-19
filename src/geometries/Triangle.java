@@ -11,14 +11,6 @@ import java.util.List;
 public class Triangle extends Polygon{
 
     /**
-     *
-     * @param point3D
-     * @return
-     */
-    //public Vector getNormal(Point3D point3D) {
-     //   return null;
-    //}
-    /**
      *constructor that get 3 points and operates the father constructor
      * @param p1 first point
      * @param p2 second point
