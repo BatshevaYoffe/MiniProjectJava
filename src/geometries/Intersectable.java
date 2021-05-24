@@ -41,7 +41,7 @@ public interface Intersectable {
     }
 
     /**
-     *
+     * find the intersection points of the ray with the geometry
      * @param ray
      * @return list of geoPoints
      */
@@ -53,5 +53,20 @@ public interface Intersectable {
                 .collect(Collectors.toList());
     }
 
-    List<GeoPoint> findGeoIntersections(Ray ray);
+    /**
+     * find Geo Point intersection
+     * @param ray
+     * @return list of the points and their geometry that ray construct
+     */
+    default List<GeoPoint> findGeoIntersections(Ray ray){
+        return findGeoIntersections(ray,Double.POSITIVE_INFINITY);
+    }
+
+    /**
+     *
+     * @param ray
+     * @param maxDistance The maximum distance with which to look for intersection points
+     * @return
+     */
+    List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance);
 }

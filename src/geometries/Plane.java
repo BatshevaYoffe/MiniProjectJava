@@ -18,6 +18,7 @@ public class Plane extends Geometry {
 
     /**
      * constructor that get 3 points and calculate the normal, if 2 of the point coming together or on the same line=> then an exception will be thrown
+     *
      * @param p1 first point
      * @param p2 second point
      * @param p3 third point
@@ -34,6 +35,7 @@ public class Plane extends Geometry {
 
     /**
      * constructor that get point and vector(normalized the vector)
+     *
      * @param point3D the new point
      * @param vectorN the new vector
      */
@@ -67,11 +69,12 @@ public class Plane extends Geometry {
 
     /**
      * find geo points intersections with plane
+     *
      * @param ray
      * @return list of geo points in plane
      */
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
         Point3D p0 = ray.getP0();
         Vector v = ray.getDir();
 
@@ -91,11 +94,12 @@ public class Plane extends Geometry {
         }
 
         double t = alignZero(Nq0_p0 / nv);
-        if (t > 0) {
+        if (t > 0 && alignZero(t - maxDistance) <= 0) {
             Point3D p = ray.getPoint(t);
             return (List.of(new GeoPoint(this, p)));
         }
 
         return null;
     }
+
 }

@@ -14,6 +14,22 @@ public class Ray {
     private Point3D _p0;
     private Vector _dir;
 
+    /**
+     * constructor
+     *
+     * @param point3D
+     * @param lightSource
+     * @param n
+     * @param delta
+     */
+    public Ray(Point3D point3D, LightSource lightSource, Vector n, double delta) {
+        Vector l = lightSource.getL(point3D).scale(-1);
+        Vector _delta = n.scale(n.dotProduct(l) > 0 ? delta : delta);
+        _p0 = point3D.add(_delta);
+        _dir = l;
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,16 +47,6 @@ public class Ray {
     public Ray(Point3D p0, Vector dir) {
         _p0 = p0;
         _dir = dir.normalized();
-    }
-
-    /**
-     * @param point
-     * @param lightSource
-     * @param n
-     * @param delta
-     */
-    public Ray(Point3D point, LightSource lightSource, Vector n, double delta) {
-
     }
 
     /**

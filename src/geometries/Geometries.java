@@ -27,15 +27,17 @@ public class Geometries implements Intersectable {
     }
 
     /**
+     * find geo points intersections of ray and geometries
      * @param ray
-     * @return list of geoPoints
+     * @param maxDistance The maximum distance with which to look for intersection points
+     * @return
      */
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
         List<GeoPoint> result = null;
         for (Intersectable geo : _intersectables) {
-            //get intersections points of a particular item from _intersectables
-            List<GeoPoint> geoPoints = geo.findGeoIntersections(ray);
+            //get intersections points of a particular item from intersected
+            List<GeoPoint> geoPoints = geo.findGeoIntersections(ray,maxDistance);
             if (geoPoints != null) {
                 //first time initialize result to new LinkedList
                 if (result == null) {
@@ -45,7 +47,6 @@ public class Geometries implements Intersectable {
                 result.addAll(geoPoints);
             }
         }
-        return result;
-    }
+        return result;    }
 
 }
