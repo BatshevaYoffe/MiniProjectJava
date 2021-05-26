@@ -7,9 +7,12 @@ public class Material {
     public double kD = 0; // for diffuse
     public double kS = 0; // for specular
     public int nShininess = 0; // shininess
+    public double kR = 0; //reflection
+    public double kT = 0; //transparency
 
     /**
      * set function for kD
+     *
      * @param kD for diffuse
      * @return the object
      */
@@ -20,6 +23,7 @@ public class Material {
 
     /**
      * set function for kS
+     *
      * @param kS specular
      * @return the object
      */
@@ -30,11 +34,34 @@ public class Material {
 
     /**
      * set for shininess
+     *
      * @param nShininess
      * @return the object
      */
     public Material setShininess(int nShininess) {
         this.nShininess = nShininess;
+        return this;
+    }
+
+    /**
+     * set for reflection
+     *
+     * @param kR
+     * @return the object
+     */
+    public Material setKr(double kR) {
+        this.kR = kR;
+        return this;
+    }
+
+    /**
+     * set for kT- transparency
+     *
+     * @param kT
+     * @return the object
+     */
+    public Material setKt(double kT) {
+        this.kT = kT;
         return this;
     }
 }

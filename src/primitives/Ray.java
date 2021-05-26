@@ -11,8 +11,11 @@ import java.util.List;
  * To a given point on the line called the beginning of the foundation. Defined by point and direction (unit vector)
  */
 public class Ray {
-    private Point3D _p0;
-    private Vector _dir;
+    //Size of first moving rays for shading rays
+    private static final double DELTA = 0.1;
+
+    private final Point3D _p0;
+    private final Vector _dir;
 
     /**
      * constructor
@@ -20,14 +23,27 @@ public class Ray {
      * @param point3D
      * @param lightSource
      * @param n
-     * @param delta
      */
-    public Ray(Point3D point3D, LightSource lightSource, Vector n, double delta) {
+    public Ray(Point3D point3D, LightSource lightSource, Vector n) {
         Vector l = lightSource.getL(point3D).scale(-1);
-        Vector _delta = n.scale(n.dotProduct(l) > 0 ? delta : delta);
+        Vector _delta = n.scale(n.dotProduct(l) > 0 ? DELTA : -DELTA);
         _p0 = point3D.add(_delta);
         _dir = l;
 
+    }
+
+    /**
+     * constructor
+     * the new ray Minimal distance from the original point
+     * @param point3D
+     * @param dir
+     * @param n
+     */
+    public Ray(Point3D point3D, Vector dir, Vector n) {
+        Vector delta = n.scale(n.dotProduct(dir) > 0 ? DELTA : -DELTA);
+        Point3D point = point3D.add(delta);
+        _dir = dir;
+        _p0 = point;
     }
 
     @Override

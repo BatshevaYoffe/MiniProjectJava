@@ -55,28 +55,28 @@ public class CameraIntegrationTest {
     @Test
     void testSphereCamera(){
         //Two intersection points, the sphere is the view plane
-        Sphere sphere=new Sphere(new Point3D(0,0,-3),1);
+        Sphere sphere=new Sphere(1, new Point3D(0,0,-3));
 
         Camera camera=new Camera(Point3D.ZERO,new Vector(0,0,-1),new Vector(0,1,0)).setDistance(1).setViewPlaneSize(3,3);
         TestCamera(sphere,camera,2);
 
         //18 intersection points, the sphere intersection the view plane
-        sphere=new Sphere(new Point3D(0,0,-2.5),2.5);
+        sphere=new Sphere(2.5, new Point3D(0,0,-2.5));
         camera=new Camera(new Point3D(0,0,0.5),new Vector(0,0,-1),new Vector(0,1,0)).setDistance(1).setViewPlaneSize(3,3);
         TestCamera(sphere,camera,18);
 
         //10 intersection points, the sphere intersection the view plane
-        sphere=new Sphere(new Point3D(0,0,-2),2);
+        sphere=new Sphere(2, new Point3D(0,0,-2));
         camera=new Camera(new Point3D(0,0,0.5),new Vector(0,0,-1),new Vector(0,1,0)).setDistance(1).setViewPlaneSize(3,3);
         TestCamera(sphere,camera,10);
 
         //9 intersection points
         camera=new Camera(Point3D.ZERO,new Vector(0, 0, -1), new Vector(0, -1, 0)).setDistance(1).setViewPlaneSize(3,3);
-        sphere=new Sphere(new Point3D(0,0,-2),4);
+        sphere=new Sphere(4, new Point3D(0,0,-2));
         TestCamera(sphere,camera,9);
 
         //Zero intersection points,the sphere before the view plane
-        sphere=new Sphere(new Point3D(0,0,1),0.5);
+        sphere=new Sphere(0.5, new Point3D(0,0,1));
         TestCamera(sphere,camera,0);
     }
 

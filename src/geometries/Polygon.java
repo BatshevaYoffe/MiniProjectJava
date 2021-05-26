@@ -14,11 +14,11 @@ public class Polygon  extends Geometry {
     /**
      * List of polygon's vertices
      */
-    protected List<Point3D> vertices;
+    protected List<Point3D> _vertices;
     /**
      * Associated plane in which the polygon lays
      */
-    protected final Plane plane;
+    protected final Plane _plane;
 
     /**
      * Polygon constructor based on vertices list. The list must be ordered by edge
@@ -44,15 +44,15 @@ public class Polygon  extends Geometry {
     public Polygon(Point3D... vertices) {
         if (vertices.length < 3)
             throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
-        this.vertices = List.of(vertices);
+        this._vertices = List.of(vertices);
         // Generate the plane according to the first three vertices and associate the
         // polygon with this plane.
         // The plane holds the invariant normal (orthogonal unit) vector to the polygon
-        plane = new Plane(vertices[0], vertices[1], vertices[2]);
+        _plane = new Plane(vertices[0], vertices[1], vertices[2]);
         if (vertices.length == 3)
             return; // no need for more tests for a Triangle
 
-        Vector n = plane.getNormal();
+        Vector n = _plane.getNormal();
 
         // Subtracting any subsequent points will throw an IllegalArgumentException
         // because of Zero Vector if they are in the same point
@@ -83,50 +83,80 @@ public class Polygon  extends Geometry {
 
     @Override
     public Vector getNormal(Point3D point) {
-        return plane.getNormal();
+        return _plane.getNormal();
     }
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
-        List<GeoPoint> planeGeoIntersections=plane.findGeoIntersections(ray,maxDistance);
-
-        if(planeGeoIntersections==null){
+        List<GeoPoint> planeIntersections = _plane.findGeoIntersections(ray, maxDistance);
+        if (planeIntersections == null)
             return null;
-        }
 
-        Point3D p0= ray.getP0();
-        Vector v=ray.getDir();
+        Point3D p0 = ray.getP0();
+        Vector v = ray.getDir();
 
-        Point3D p1=vertices.get(1);
-        Point3D p2=vertices.get(0);
-
-        Vector v1=p1.subtract(p0);
-        Vector v2=p2.subtract(p0);
-
-        double sign=alignZero(v.dotProduct(v1.crossProduct(v2)));
-
-        if(isZero(sign)){
+        Vector v1 = _vertices.get(1).subtract(p0);
+        Vector v2 = _vertices.get(0).subtract(p0);
+        double sign = v.dotProduct(v1.crossProduct(v2));
+        if (isZero(sign))
             return null;
+
+        boolean positive = sign > 0;
+
+        for (int i = _vertices.size() - 1; i > 0; --i) {
+            v1 = v2;
+            v2 = _vertices.get(i).subtract(p0);
+            sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+            if (isZero(sign)) return null;
+            if (positive != (sign > 0)) return null;
         }
 
-        boolean flag=sign>0;
-
-        //Calculation of every scalar product of the ray's direction vector with the cross Product of to vectors in the plan
-        //and  check if the result !=0 and all the results(of all the calculation) have the same sign.
-        for(int i = vertices.size() - 1; i > 0; --i){
-            v1=v2;
-            v2=vertices.get(i).subtract(p0);
-
-            sign=alignZero(v.dotProduct(v1.crossProduct(v2)));
-            if(isZero(sign)){
-                return null;
-            }
-
-            if(flag!=(sign>0)){
-                return null;
-            }
-        }
-
-        return List.of(new GeoPoint(this,planeGeoIntersections.get(0).point));
+        planeIntersections.get(0).geometry = this;
+        return planeIntersections;
     }
 }
+
+//    @Override
+//    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
+//        List<GeoPoint> planeGeoIntersections=plane.findGeoIntersections(ray,maxDistance);
+//
+//        if(planeGeoIntersections==null){
+//            return null;
+//        }
+//
+//        Point3D p0= ray.getP0();
+//        Vector v=ray.getDir();
+//
+//        Point3D p1=vertices.get(1);
+//        Point3D p2=vertices.get(0);
+//
+//        Vector v1=p1.subtract(p0);
+//        Vector v2=p2.subtract(p0);
+//
+//        double sign=alignZero(v.dotProduct(v1.crossProduct(v2)));
+//
+//        if(isZero(sign)){
+//            return null;
+//        }
+//
+//        boolean flag=sign>0;
+//
+//        //Calculation of every scalar product of the ray's direction vector with the cross Product of to vectors in the plan
+//        //and  check if the result !=0 and all the results(of all the calculation) have the same sign.
+//        for(int i = vertices.size() - 1; i > 0; --i){
+//            v1=v2;
+//            v2=vertices.get(i).subtract(p0);
+//
+//            sign=alignZero(v.dotProduct(v1.crossProduct(v2)));
+//            if(isZero(sign)){
+//                return null;
+//            }
+//
+//            if(flag!=(sign>0)){
+//                return null;
+//            }
+//        }
+//
+//        return List.of(new GeoPoint(this,planeGeoIntersections.get(0).point));
+//    }
+//}

@@ -25,8 +25,8 @@ public class Plane extends Geometry {
      */
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
         _q0 = p1;
-        Vector U = p2.subtract(p1);//vector from p1 towards p2
-        Vector V = p3.subtract(p1);//vector from p1 towards p2
+        Vector U = p1.subtract(p2);//vector from p1 towards p2
+        Vector V = p1.subtract(p3);//vector from p1 towards p2
 
         Vector N = U.crossProduct(V);
         N.normalize();

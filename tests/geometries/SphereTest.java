@@ -18,7 +18,7 @@ class SphereTest {
      */
     @Test
     void testGetNormal() {
-        Sphere sphere=new Sphere(new Point3D(0,0,1),1.0);
+        Sphere sphere=new Sphere(1.0, new Point3D(0,0,1));
         assertEquals(new Vector(0,0,1),sphere.getNormal(new Point3D(0,0,2)),"Bad sphere normal");
     }
 
@@ -27,7 +27,7 @@ class SphereTest {
      */
     @Test
     public void testFindIntersections() {
-        Sphere sphere = new Sphere( new Point3D(1, 0, 0),1d);
+        Sphere sphere = new Sphere(1d, new Point3D(1, 0, 0));
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Ray's line is outside the sphere (0 points)
