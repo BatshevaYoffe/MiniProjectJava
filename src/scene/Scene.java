@@ -10,7 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * class scene include:
+ * name, geometries-Department of the association of Geometric bodies,ambient light, background color,list of light source
  */
 public class Scene {
     private final String _name;

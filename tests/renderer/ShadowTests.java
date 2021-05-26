@@ -123,7 +123,7 @@ public class ShadowTests {
     }
     /**
      * Produce a picture of a sphere and triangle with point light and shade
-     * changing light position
+     * changing light position 1
      */
     @Test
     public void sphereTriangleInitial3() {
@@ -136,7 +136,7 @@ public class ShadowTests {
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)) //
         );
         scene.lights.add( //
-                new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
+                new SpotLight(new Color(400, 240, 0), new Point3D(-80, -80, 100), new Vector(1, 1, -3)) //
                         .setKl(1E-5).setKq(1.5E-7));
 
         Render render = new Render(). //
@@ -146,6 +146,32 @@ public class ShadowTests {
         render.renderImage();
         render.writeToImage();
     }
+    /**
+     * Produce a picture of a sphere and triangle with point light and shade
+     * changing light position 2
+     */
+    @Test
+    public void sphereTriangleInitial4() {
+        scene.geometries.add( //
+                new Sphere(60, new Point3D(0, 0, -200)) //
+                        .setEmission(new Color(java.awt.Color.BLUE)) //
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)), //
+                new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
+                        .setEmission(new Color(java.awt.Color.BLUE)) //
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)) //
+        );
+        scene.lights.add( //
+                new SpotLight(new Color(400, 240, 0), new Point3D(-74, -74, 62), new Vector(1, 1, -3)) //
+                        .setKl(1E-5).setKq(1.5E-7));
+
+        Render render = new Render(). //
+                setImageWriter(new ImageWriter("shadowSphereTriangleInitial4", 400, 400)) //
+                .setCamera(camera) //
+                .setRayTracer(new BasicRayTracer(scene));
+        render.renderImage();
+        render.writeToImage();
+    }
+
 
 
 

@@ -33,6 +33,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * get material function
+     *
      * @return geometric material
      */
     public Material getMaterial() {
@@ -41,6 +42,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * set function
+     *
      * @param material of the geometric
      * @return the object
      */

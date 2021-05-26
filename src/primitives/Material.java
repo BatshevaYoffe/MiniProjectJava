@@ -64,4 +64,13 @@ public class Material {
         this.kT = kT;
         return this;
     }
+
+    /**
+     * get material transparency
+     *
+     * @return transparency
+     */
+    public double getKt() {
+        return kT;
+    }
 }
