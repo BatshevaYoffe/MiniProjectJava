@@ -18,10 +18,10 @@ public class Ray {
     private final Vector _dir;
 
     /**
-     * constructor
+     * constructor.
      *
-     * @param point3D
-     * @param lightSource
+     * @param point3D point 3D
+     * @param lightSource light Source
      * @param n
      */
     public Ray(Point3D point3D, LightSource lightSource, Vector n) {

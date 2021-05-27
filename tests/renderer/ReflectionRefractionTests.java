@@ -1,6 +1,7 @@
 package renderer;
 
 import elements.*;
+import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
 import org.junit.jupiter.api.Test;
@@ -112,6 +113,45 @@ public class ReflectionRefractionTests {
                 .setCamera(camera) //
                 .setRayTracer(new BasicRayTracer(scene));
 
+        render.renderImage();
+        render.writeToImage();
+    }
+
+
+    @Test
+    /**
+     * A test that presents the transparency, reflection and shading properties of geometric bodies
+     */
+    public void showAllTheEffects() {
+        Scene scene = new Scene("Test scene");
+         Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+                .setViewPlaneSize(500, 500).setDistance(1000);
+
+        scene.geometries.add( //
+                new Sphere(60, new Point3D(0, 0, -200)) //
+                        .setEmission(new Color(java.awt.Color.BLUE)) //
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)), //
+                new Sphere(50, new Point3D(-200,-200,-100)) //
+                        .setEmission(new Color(java.awt.Color.BLUE)) //
+                        .setMaterial(new Material().setKd(0.5).setKs(0.25).setKt(0.5)), //
+                new Sphere(25, new Point3D(-200,-200,-100)) //
+                        .setEmission(new Color(java.awt.Color.BLUE)) //
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)), //
+                new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
+                        .setEmission(new Color(java.awt.Color.BLUE)) //
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30).setKt(0.80)), //
+                 new Triangle(new Point3D(200,0,-200), new Point3D(166,166,334),
+                new Point3D(0,190,-200)) //
+                .setEmission(new Color(20, 20, 20)) //
+                .setMaterial(new Material().setKr(1)));
+        scene.lights.add( //
+                new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
+                        .setKl(1E-5).setKq(1.5E-7));
+
+        Render render = new Render(). //
+                setImageWriter(new ImageWriter("shadowAllEffects", 400, 400)) //
+                .setCamera(camera) //
+                .setRayTracer(new BasicRayTracer(scene));
         render.renderImage();
         render.writeToImage();
     }

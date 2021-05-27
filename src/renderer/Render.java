@@ -21,6 +21,7 @@ public class Render {
     /**
      * changing
      * set function for imageWriter Updating
+     *
      * @param imageWriter
      * @return Object itself for threading
      */
@@ -31,7 +32,8 @@ public class Render {
 
     /**
      * set function for camera Updating
-     * @param cam
+     *
+     * @param cam camera
      * @return Object itself for threading
      */
     public Render setCamera(Camera cam) {
@@ -41,6 +43,7 @@ public class Render {
 
     /**
      * set function for basicRayTracer Updating
+     *
      * @param basicRayTracer
      * @return Object itself for threading
      */
@@ -79,12 +82,13 @@ public class Render {
 
     /**
      * Create a grid of lines similar to what was done in the test in the first step.
+     *
      * @param interval
      * @param color
      */
     public void printGrid(int interval, Color color) {
-        if(_imageWriter==null){
-           throw new MissingResourceException("imagewriter is null",ImageWriter.class.getName(),"");
+        if (_imageWriter == null) {
+            throw new MissingResourceException("imagewriter is null", ImageWriter.class.getName(), "");
         }
         int nX = _imageWriter.getNx();
         int nY = _imageWriter.getNy();
