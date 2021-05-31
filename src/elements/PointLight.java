@@ -3,6 +3,7 @@ package elements;
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
+
 /**
  * class for point light
  */
@@ -30,6 +31,7 @@ public class PointLight extends Light implements LightSource {
         return this;
     }
 
+    //getters
     public double getKc() {
         return _kc;
     }
@@ -44,6 +46,7 @@ public class PointLight extends Light implements LightSource {
 
     /**
      * constructor for point light
+     *
      * @param intensity
      * @param position
      */
@@ -54,6 +57,7 @@ public class PointLight extends Light implements LightSource {
 
     /**
      * get function
+     *
      * @param point3D
      * @return the intensity of the point
      */
@@ -65,7 +69,6 @@ public class PointLight extends Light implements LightSource {
     }
 
     /**
-     *
      * @param point3D
      * @return the vector from the light to the point
      */
@@ -75,7 +78,6 @@ public class PointLight extends Light implements LightSource {
     }
 
     /**
-     *
      * @param point3D
      * @return the distance between the Lighting source to the point
      */

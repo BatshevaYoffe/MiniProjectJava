@@ -22,13 +22,17 @@ public class Geometries implements Intersectable {
         add(list);
     }
 
+    /**
+     * add Geometries function
+     * @param list the list to add
+     */
     public void add(Intersectable... list) {
         Collections.addAll(_intersectables, list);
     }
 
     /**
      * find geo points intersections of ray and geometries
-     * @param ray
+     * @param ray ray
      * @param maxDistance The maximum distance with which to look for intersection points
      * @return
      */
