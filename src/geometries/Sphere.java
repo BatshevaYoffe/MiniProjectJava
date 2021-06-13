@@ -15,6 +15,10 @@ public class Sphere extends Geometry {
     final Point3D _center;
     final double _radius;
 
+    /**
+     * @param point3D point 3D
+     * @return normal vector
+     */
     @Override
     public Vector getNormal(Point3D point3D) {
         if (point3D.equals(_center)) {
@@ -27,8 +31,8 @@ public class Sphere extends Geometry {
     /**
      * sphere constructor
      *
-     * @param radius
-     * @param center
+     * @param radius of the sphere
+     * @param center of the sphere
      */
     public Sphere(double radius, Point3D center) {
         _radius = radius;
@@ -38,7 +42,7 @@ public class Sphere extends Geometry {
     /**
      * find geo points intersections with sphere
      *
-     * @param ray
+     * @param ray ray
      * @return list of geo points
      */
     @Override
@@ -49,7 +53,7 @@ public class Sphere extends Geometry {
 
         Vector U = O.subtract(p0);
         double tm = alignZero(V.dotProduct(U));
-        if(_center.equals(p0)){   // p0 == _center
+        if (_center.equals(p0)) {   // p0 == _center
             return List.of(new GeoPoint(this, (ray.getPoint(this._radius))));
         }
 
@@ -69,8 +73,8 @@ public class Sphere extends Geometry {
 
         double t1 = tm - th;
         double t2 = tm + th;
-        double t1dist=alignZero(maxDistance-t1);
-        double t2dist=alignZero(maxDistance-t2);
+        double t1dist = alignZero(maxDistance - t1);
+        double t2dist = alignZero(maxDistance - t2);
 
         if (t1 <= 0 && t2 <= 0) {
             return null;
@@ -95,7 +99,6 @@ public class Sphere extends Geometry {
         else if ((t2 > 0) && (t2dist > 0))
             return List.of(new GeoPoint(this, (ray.getPoint(t2))));
         return null;
-
 
 
 //        if (t1 > 0 && t2 > 0 && alignZero(t1 - maxDistance) <= 0 && alignZero(t2 - maxDistance) <= 0) {

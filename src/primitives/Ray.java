@@ -20,7 +20,7 @@ public class Ray {
     /**
      * constructor.
      *
-     * @param point3D point 3D
+     * @param point3D     point 3D
      * @param lightSource light Source
      * @param n
      */
@@ -35,6 +35,7 @@ public class Ray {
     /**
      * constructor
      * the new ray Minimal distance from the original point
+     *
      * @param point3D
      * @param dir
      * @param n

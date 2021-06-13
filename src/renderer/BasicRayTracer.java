@@ -40,7 +40,7 @@ public class BasicRayTracer extends RayTracerBase {
         List<GeoPoint> intersection = _scene.geometries.findGeoIntersections(ray);
         //if there are not intersection return The background color of the scene
         if (intersection == null) {
-            return Color.BLACK;
+            return _scene.backgroundColor;
         }
         //The point closest to the beginning of the foundation will be found
         GeoPoint closestPoint = ray.findClosestGeoPoint(intersection);
@@ -59,13 +59,6 @@ public class BasicRayTracer extends RayTracerBase {
         return calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K)
                 .add(_scene.ambientLight.getIntensity());
     }
-
-    //    private Color calcColor(GeoPoint closestPoint, Ray ray) {
-//
-//        return _scene.ambientLight.getIntensity()
-//                .add(closestPoint.geometry.getEmission())
-//                .add(calcLocalEffects(closestPoint, ray));
-//    }
 
     /**
      * @param geoPoint the geometry point3D

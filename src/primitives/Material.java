@@ -35,7 +35,7 @@ public class Material {
     /**
      * set for shininess
      *
-     * @param nShininess
+     * @param nShininess shininess
      * @return the object
      */
     public Material setShininess(int nShininess) {
@@ -46,7 +46,7 @@ public class Material {
     /**
      * set for reflection
      *
-     * @param kR
+     * @param kR reflection
      * @return the object
      */
     public Material setKr(double kR) {
@@ -57,7 +57,7 @@ public class Material {
     /**
      * set for kT- transparency
      *
-     * @param kT
+     * @param kT transparency
      * @return the object
      */
     public Material setKt(double kT) {

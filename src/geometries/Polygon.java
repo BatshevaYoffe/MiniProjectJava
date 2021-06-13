@@ -1,7 +1,9 @@
 package geometries;
 
 import java.util.List;
+
 import primitives.*;
+
 import static primitives.Util.*;
 
 /**
@@ -10,7 +12,7 @@ import static primitives.Util.*;
  *
  * @author Dan
  */
-public class Polygon  extends Geometry {
+public class Polygon extends Geometry {
     /**
      * List of polygon's vertices
      */
@@ -81,11 +83,20 @@ public class Polygon  extends Geometry {
         }
     }
 
+    /**
+     * @param point should be null for flat geometries
+     * @return normal
+     */
     @Override
     public Vector getNormal(Point3D point) {
         return _plane.getNormal();
     }
 
+    /**
+     * @param ray         ray
+     * @param maxDistance The maximum distance with which to look for intersection points
+     * @return list of geo points in polygon
+     */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
         List<GeoPoint> planeIntersections = _plane.findGeoIntersections(ray, maxDistance);
@@ -102,6 +113,8 @@ public class Polygon  extends Geometry {
             return null;
 
         boolean positive = sign > 0;
+        //Calculation of every scalar product of the ray's direction vector with the cross Product of to vectors in the plan
+        //and  check if the result !=0 and all the results(of all the calculation) have the same sign.
 
         for (int i = _vertices.size() - 1; i > 0; --i) {
             v1 = v2;

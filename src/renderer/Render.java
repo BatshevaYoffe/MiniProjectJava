@@ -2,9 +2,7 @@ package renderer;
 
 import elements.Camera;
 import primitives.Color;
-import primitives.Point3D;
 import primitives.Ray;
-import scene.Scene;
 
 import java.util.List;
 import java.util.MissingResourceException;
@@ -17,12 +15,34 @@ public class Render {
 
     private Camera _camera;
     private RayTracerBase _rayTracer;
+    //A Boolean mod that turns on and off the enhancement feature of supersampling
+    private boolean _isAntialiasing = false;
+
+    /**
+     * A function that returns the improvement state whether it is on or off
+     *
+     * @return
+     */
+    public boolean isAntialiasing() {
+        return _isAntialiasing;
+    }
+
+    /**
+     * A variable placement function that indicates whether the supersampling feature enhancement is enabled or disabled
+     *
+     * @param antialiasing -A Boolean variable to indicate the status of the feature whether it is off or active
+     * @return the render
+     */
+    public Render setAntialiasing(boolean antialiasing) {
+        _isAntialiasing = antialiasing;
+        return this;
+    }
 
     /**
      * changing
      * set function for imageWriter Updating
      *
-     * @param imageWriter
+     * @param imageWriter image Writer
      * @return Object itself for threading
      */
     public Render setImageWriter(ImageWriter imageWriter) {
@@ -44,7 +64,7 @@ public class Render {
     /**
      * set function for basicRayTracer Updating
      *
-     * @param basicRayTracer
+     * @param basicRayTracer basic Ray Tracer
      * @return Object itself for threading
      */
     public Render setRayTracer(BasicRayTracer basicRayTracer) {
@@ -53,13 +73,13 @@ public class Render {
     }
 
     /**
-     *
+     * write To Image function
      */
     public void writeToImage() {
-        //if(_imageWriter==null){
-        //    throw new  MissingResourcesException("the image writer is NULL");
-        //}
-        //sublimation
+        if (_imageWriter == null) {
+            throw new MissingResourceException("imagewriter is null", ImageWriter.class.getName(), "");
+        }
+//        sublimation
         _imageWriter.writeToImage();
     }
 
@@ -75,6 +95,17 @@ public class Render {
                 //For each pixel will be built a ray and for each ray we will get a color from the horn comb. Does the color women in the appropriate pixel of the image maker
                 Ray ray = _camera.constructRayThroughPixel(nX, nY, j, i);
                 Color color = _rayTracer.traceRay(ray);
+                // If the supersampling feature scattering parameter is active then we will divide each pixel into several pixels and sample additional rays to calculate the color of the dot accurately
+                if (_isAntialiasing) {
+                    List<Ray> rays = _camera.constructRaysThroughPixel(ray, nX, nY, j, i);
+                    for (var ray1 : rays) {
+                        color = color.add(_rayTracer.traceRay(ray1));
+
+                    }
+                    //The average color of the rays coming out of one pixel
+                    color = color.reduce(rays.size() + 1);
+                }
+
                 _imageWriter.writePixel(j, i, color);
             }
         }

@@ -45,7 +45,9 @@ public class Plane extends Geometry {
     }
 
     /**
-     * @param point3D
+     * get normal function
+     *
+     * @param point3D normal
      * @return the normal from the point
      */
     public Vector getNormal(Point3D point3D) {
@@ -70,7 +72,7 @@ public class Plane extends Geometry {
     /**
      * find geo points intersections with plane
      *
-     * @param ray
+     * @param ray the ray
      * @return list of geo points in plane
      */
     @Override
