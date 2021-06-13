@@ -4,6 +4,9 @@ import primitives.Color;
 import primitives.Ray;
 import scene.Scene;
 
+/**
+ * abstract class Ray Tracer Base
+ */
 public abstract class RayTracerBase {
     protected final Scene _scene;
 

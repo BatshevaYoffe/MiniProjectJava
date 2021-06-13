@@ -22,7 +22,7 @@ public class Tube extends Geometry {
      * getNormal override function
      *
      * @param point
-     * @return
+     * @return normal vector
      */
     @Override
     public Vector getNormal(Point3D point) {

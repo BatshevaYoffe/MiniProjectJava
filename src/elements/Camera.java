@@ -51,6 +51,7 @@ public class Camera {
     }
 
     //get functions
+
     public Point3D getP0() {
         return _p0;
     }

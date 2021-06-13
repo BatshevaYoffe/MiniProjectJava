@@ -47,8 +47,8 @@ public class PointLight extends Light implements LightSource {
     /**
      * constructor for point light
      *
-     * @param intensity
-     * @param position
+     * @param intensity intensity color
+     * @param position position point
      */
     public PointLight(Color intensity, Point3D position) {
         super(intensity);
@@ -58,7 +58,7 @@ public class PointLight extends Light implements LightSource {
     /**
      * get function
      *
-     * @param point3D
+     * @param point3D point3D
      * @return the intensity of the point
      */
     @Override
@@ -69,7 +69,7 @@ public class PointLight extends Light implements LightSource {
     }
 
     /**
-     * @param point3D
+     * @param point3D point
      * @return the vector from the light to the point
      */
     @Override
@@ -78,7 +78,8 @@ public class PointLight extends Light implements LightSource {
     }
 
     /**
-     * @param point3D
+     * get Distance function
+     * @param point3D point 3D
      * @return the distance between the Lighting source to the point
      */
     @Override

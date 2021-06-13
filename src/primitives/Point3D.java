@@ -29,7 +29,7 @@ public class Point3D {
     /**
      * Adding a vector to a point - Returns a new point
      *
-     * @param vector
+     * @param vector vector
      * @return new point
      */
     public Point3D add(Vector vector) {
@@ -43,7 +43,7 @@ public class Point3D {
     /**
      * Vector subtraction - receives a second point in the parameter
      *
-     * @param point3D
+     * @param point3D point 3d
      * @return vector from the second point to the point on which the operation is performed
      */
     public Vector subtract(Point3D point3D) {

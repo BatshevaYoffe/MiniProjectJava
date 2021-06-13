@@ -34,7 +34,7 @@ public class Geometries implements Intersectable {
      * find geo points intersections of ray and geometries
      * @param ray ray
      * @param maxDistance The maximum distance with which to look for intersection points
-     * @return
+     * @return intersection list
      */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {

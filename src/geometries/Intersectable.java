@@ -6,6 +6,9 @@ import primitives.Ray;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * interface Intersectable
+ */
 public interface Intersectable {
     /**
      * class GeoPoint internal help class

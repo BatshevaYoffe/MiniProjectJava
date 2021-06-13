@@ -6,7 +6,9 @@ import primitives.Color;
  * light class
  */
 class Light {
-    //Fill lighting intensity
+    /**
+     * Fill lighting intensity
+     */
     protected final Color _intensity;
 
     /**
