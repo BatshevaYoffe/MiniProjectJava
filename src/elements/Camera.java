@@ -80,6 +80,26 @@ public class Camera {
         return _distance;
     }
 
+    /**
+     * function tho calculate the width of one pixel
+     *
+     * @param nX number of columns in the view plan
+     * @return the width of one pixel
+     */
+    public double getRx(int nX) {
+        return _width / nX;
+    }
+
+    /**
+     * function tho calculate the height of one pixel
+     *
+     * @param nY number of rows in the view plan
+     * @return the height of one pixel
+     */
+    public double getRy(int nY) {
+        return _height / nY;
+    }
+
 //setters using method chaining
 
     /**
@@ -136,7 +156,7 @@ public class Camera {
      * @param i      row index
      * @return Pixel center point3D
      */
-    private Point3D getPij(Point3D Pc, double height, double width, int nX, int nY, int j, int i) {
+    public Point3D getPij(Point3D Pc, double height, double width, int nX, int nY, int j, int i) {
         //Ratio (pixel width & height)
         double Ry = height / nY;
         double Rx = width / nX;
@@ -155,6 +175,7 @@ public class Camera {
         }
         return Pij;
     }
+    /////////////////////////////PROJECT 1/////////////////////////////////////////////
 
     /**
      * construct Rays Through Pixel
@@ -225,4 +246,105 @@ public class Camera {
 
     }
 
+    /////////////////////////////////////////////////PROJECT 2//////////////////////////////////////
+
+    /**
+     * function to find a list of 4 rays passing through the corners of the pixel
+     *
+     * @param nX  represents the number of columns (row width)
+     * @param nY  represents the number of rows
+     * @param col columns index
+     * @param row row index
+     * @return list of rays
+     */
+    public List<Ray> constructRaysThroughPixel2(int nX, int nY, int col, int row) {
+        //list of rays Through Pixel
+        List<Ray> raysThroughPixel = new LinkedList<>();
+
+        Point3D Pc = _p0.add(_vTo.scale(_distance));
+        Point3D Pij = getPij(Pc, _height, _width, nX, nY, col, row);
+        //Ratio (pixel width & height)
+        double Ry = _height / nY;
+        double Rx = _width / nX;
+
+        return ray4Corners(Pij, Rx, Ry);
+
+    }
+
+    /**
+     * calculation 4 rays from the corners of the pixel
+     *
+     * @param Pij the center of the pixel(point)
+     * @param Rx  the width of the pixel
+     * @param Ry  the height of the pixel
+     * @return list of rays
+     */
+    private List<Ray> ray4Corners(Point3D Pij, double Rx, double Ry) {
+        List<Ray> raysThroughPixel = new LinkedList<>();
+        Point3D Pij1 = Pij;
+        Pij1 = Pij1.add(_vRight.scale(-Rx * 0.5));
+        Pij1 = Pij1.add(_vUp.scale(Ry * 0.5));
+        Vector Vij = Pij1.subtract(_p0).normalize();
+        Ray newRay = new Ray(_p0, Vij);
+        raysThroughPixel.add(newRay);
+        Pij1 = Pij;
+        Pij1 = Pij1.add(_vRight.scale(Rx * 0.5));
+        Pij1 = Pij1.add(_vUp.scale(Ry * 0.5));
+        Vij = Pij1.subtract(_p0).normalize();
+        newRay = new Ray(_p0, Vij);
+        raysThroughPixel.add(newRay);
+        Pij1 = Pij;
+        Pij1 = Pij1.add(_vRight.scale(-Rx * 0.5));
+        Pij1 = Pij1.add(_vUp.scale(-Ry * 0.5));
+        Vij = Pij1.subtract(_p0).normalize();
+        newRay = new Ray(_p0, Vij);
+        raysThroughPixel.add(newRay);
+        Pij1 = Pij;
+        Pij1 = Pij1.add(_vRight.scale(Rx * 0.5));
+        Pij1 = Pij1.add(_vUp.scale(-Ry * 0.5));
+        Vij = Pij1.subtract(_p0).normalize();
+        newRay = new Ray(_p0, Vij);
+        raysThroughPixel.add(newRay);
+        return raysThroughPixel;
+    }
+
+    /**
+     * calculate the center of the pixel
+     *
+     * @param nX represents the number of columns (row width)
+     * @param nY represents the number of rows
+     * @param j  columns index
+     * @param i  row index
+     * @return point 3D (center of the pixel)
+     */
+    public Point3D getPc(int nX, int nY, int j, int i) {
+        Point3D Pc = _p0.add(_vTo.scale(_distance));
+        //Pixel[i,j] center
+        Point3D Pij = getPij(Pc, _height, _width, nX, nY, j, i);
+        return Pij;
+    }
+
+    /**
+     * function to calculate 5 rays from the center of the edges of the pixel and from the center of the pixel
+     *
+     * @param pc-the    center of the pixel(point 3D)
+     * @param Rx-width  of the pixel
+     * @param Ry-height of the pixel
+     * @return list of rays.
+     */
+    public List<Ray> colors5Centers(Point3D pc, double Rx, double Ry) {
+        List<Point3D> points = new LinkedList<>();
+        List<Ray> rays = new LinkedList<>();
+
+        points.add(pc.add(_vUp.scale(Rx / 2)));
+        points.add(pc.add(_vRight.scale(-Rx / 2)));
+        points.add(pc);
+        points.add(pc.add(_vRight.scale(Rx / 2)));
+        points.add(pc.add(_vUp.scale(-Ry / 2)));
+
+        for (var p : points) {
+            rays.add(new Ray(_p0, p.subtract(_p0)));
+        }
+        return rays;
+    }
 }

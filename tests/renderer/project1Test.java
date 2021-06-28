@@ -51,7 +51,7 @@ public class project1Test {
                 .setCamera(camera) //
                 .setRayTracer(new BasicRayTracer(scene));
 
-        render.setAntialiasing(true);//supersampling
+       // render.setAntialiasing(true);//supersampling
         render.renderImage();
         render.printGrid(100, new Color(java.awt.Color.YELLOW));
         render.writeToImage();
@@ -121,10 +121,12 @@ public class project1Test {
 
 
         Render render = new Render(). //
-                setImageWriter(new ImageWriter("projectsecond", 400, 400)) //
+                setImageWriter(new ImageWriter("bdika1", 400, 400)) //
                 .setCamera(camera) //
                 .setRayTracer(new BasicRayTracer(scene));
-        render.setAntialiasing(true);
+        render.set_isAdaptiveSupersampling(true);
+        render.setDebugPrint();
+        render.setMultithreading(6);
         render.renderImage();
         render.writeToImage();
     }

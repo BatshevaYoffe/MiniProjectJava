@@ -1,5 +1,6 @@
 package primitives;
 
+
 /**
  * Wrapper class for java.jwt.Color The constructors operate with any
  * non-negative RGB values. The colors are maintained without upper limit of
@@ -22,6 +23,8 @@ public class Color {
      */
     public static final Color BLACK = new Color();
     public static final Color BLUE = new Color(0, 0, 255);
+    private  static final double THRESHOLD = 0.001;
+
 
     /**
      * Default constructor - to generate Black Color (privately)
@@ -121,6 +124,25 @@ public class Color {
         if (k < 1)
             throw new IllegalArgumentException("Can't scale a color by a by a number lower than 1");
         return new Color(r / k, g / k, b / k);
+    }
+
+    /**
+     * check whether colors are equals by calculating the difference between them. if the difference les then 5 the are equal to.
+     * @param o color
+     * @return if the colors is the same
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Color color = (Color) o;
+        double difference=Math.abs(color.r- r)+Math.abs(color.g- g)+Math.abs(color.b- b);//difference between the colors
+        if(difference<5){
+            // the difference is not significant
+            return true;
+        }
+        return false;
+        //return Double.compare(color.r, r) == 0 && Double.compare(color.g, g) == 0 && Double.compare(color.b, b) == 0;
     }
 
 }
