@@ -32,7 +32,7 @@ public class Render {
     private boolean _isAntialiasing = false; //A Boolean mod that turns on and off the enhancement feature of supersampling
     private boolean _isAdaptiveSupersampling = false;//A Boolean mod that turns on and off the enhancement feature of adaptive supersampling
 
-    private int level = 0;//the depth of recursion
+    private final int level = 2;//the depth of recursion
 
     /**
      * A function that returns the improvement state whether it is on or off
@@ -346,7 +346,7 @@ public class Render {
         }
         List<Color> centers = colors5Centers(Pc, Rx, Ry);
         //calculate the color of all the sub-pixel in recursive way
-        //fro all sub-pixel we calculate the color of 4 different rays,1 fron the rays of the corners and another 3 from the list of the 5 centers.
+        //from all sub-pixel we calculate the color of 4 different rays,1 from the rays of the corners and another 3 from the list of the 5 centers.
         sumColors = sumColors.add(recursive(List.of(corners.get(0), centers.get(0), centers.get(1), centers.get(2)),
                 Rx / 2, Ry / 2, level - 1,
                 camera.getPij(Pc, Ry, Rx, 2, 2, 0, 0)));
@@ -529,7 +529,7 @@ public class Render {
 //     */
 //    public void writeToImage() {
 //        if (_imageWriter == null) {
-//            throw new MissingResourceException("imagewriter is null", ImageWriter.class.getName(), "");
+//            throw new MissingResourceException("image writer is null", ImageWriter.class.getName(), "");
 //        }
 ////        sublimation
 //        _imageWriter.writeToImage();
@@ -571,7 +571,7 @@ public class Render {
 //     */
 //    public void printGrid(int interval, Color color) {
 //        if (_imageWriter == null) {
-//            throw new MissingResourceException("imagewriter is null", ImageWriter.class.getName(), "");
+//            throw new MissingResourceException("image writer is null", ImageWriter.class.getName(), "");
 //        }
 //        int nX = _imageWriter.getNx();
 //        int nY = _imageWriter.getNy();
