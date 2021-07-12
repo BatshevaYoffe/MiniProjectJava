@@ -323,16 +323,15 @@ public class Render {
     }
 
     /**
-     * @author Naama and Batsheva(with the help of efrat klain)
-     * function to to calculate the color of the pixel,
-     * As long as all the pixel corners are not equal in color or we have not reached enough recursion depth we will continue to divide each pixel into 4 pixels and so on
-     *
      * @param corners-list of the ray from the corners of the pixel
      * @param Rx-width     of the pixel
      * @param Ry-height    of the pixel
      * @param level-the    death of the recursive
      * @param Pc-the       center of the pixel
      * @return the pixel color
+     * @author Naama and Batsheva(with the help of efrat klain)
+     * function to to calculate the color of the pixel,
+     * As long as all the pixel corners are not equal in color or we have not reached enough recursion depth we will continue to divide each pixel into 4 pixels and so on
      */
     private Color recursive(List<Color> corners, double Rx, double Ry, int level, Point3D Pc) {
 
@@ -366,7 +365,7 @@ public class Render {
     }
 
     /**
-     * funk to find  list of the 4 ray colors in the corners of the pixel
+     * function to find  list of the 4 ray colors in the corners of the pixel
      *
      * @param rays-list of rays from the corners of the pixel
      * @return list of colors

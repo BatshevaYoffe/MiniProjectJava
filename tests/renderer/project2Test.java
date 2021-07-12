@@ -141,7 +141,7 @@ public class project2Test {
                 new DirectionalLight(new Color(100, 200, 0), new Vector(300, -140, -200)));
 
         Render render = new Render(). //
-                setImageWriter(new ImageWriter("project2n", 400, 400)) //
+                setImageWriter(new ImageWriter("project2Regular", 400, 400)) //
                 .setCamera(camera) //
                 .setRayTracer(new BasicRayTracer(scene));
         //render.set_isAdaptiveSupersampling(true);

@@ -25,6 +25,7 @@ public class project1Test {
             .setViewPlaneSize(500, 500);
 
     /**
+     * example
      * Produce a scene with basic 3D model and render it into a png image with a
      * grid
      * basicRenderTwoColorTest with supersampling

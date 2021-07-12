@@ -53,6 +53,7 @@ public class BasicRayTracer extends RayTracerBase {
      * The operation will schedule an auxiliary operation
      *
      * @param geoPoint point3D and geometries
+     * @param ray      ray
      * @return color
      */
     private Color calcColor(GeoPoint geoPoint, Ray ray) {
@@ -161,6 +162,7 @@ public class BasicRayTracer extends RayTracerBase {
      *
      * @param intersection geometry and intersection point
      * @param ray          the ray that cuts the geoPoint(intersection)
+     * @param k
      * @return color of the point
      */
     private Color calcLocalEffects(GeoPoint intersection, Ray ray, double k) {
@@ -256,7 +258,8 @@ public class BasicRayTracer extends RayTracerBase {
      * Function for calculating the level of shading at a point.
      * We would like to get partial shading in case the body or bodies that block the light source from the point have transparency to one degree or another * @param lightSource
      *
-     * @param geoPoint point3D and geometry
+     * @param lightSource light
+     * @param geoPoint    point3D and geometry
      * @return the level of shading at a point.
      */
     private double transparency(LightSource lightSource, GeoPoint geoPoint) {
